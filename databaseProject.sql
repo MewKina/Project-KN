@@ -7,7 +7,7 @@ USE RestaurantManagement;
 -- customer table creation
 CREATE TABLE Customers (
 	customer_name VARCHAR(255) PRIMARY KEY,
-    phone_number VARCHAR(20)
+    phone_number VARCHAR(255)
 );
 
 -- table seating thing, im not sure how to word it
@@ -59,7 +59,6 @@ CREATE TABLE Full_Time (
 -- table for manager
 CREATE TABLE Managers (
 	emp_id INT,
-	department VARCHAR(255),
 	years_of_experience INT,
 	FOREIGN KEY (emp_id) REFERENCES Employees(emp_id)
 );
@@ -70,7 +69,24 @@ CREATE TABLE Hosts (
 	language_spoken VARCHAR(255),
 	FOREIGN KEY (emp_id) REFERENCES Employees(emp_id)
 );
+-- table for inventory
+CREATE table Inventory (
+	ingredient_id INT AUTO_INCREMENT PRIMARY KEY,
+	ingredient_name VARCHAR(255),
+	expire_date DATE,
+	buy_date DATE,
+	quantity INT,
+    	unit VARCHAR(255)
+);
 
+-- table for recipe
+CREATE TABLE Recipes (
+	recipe_id INT AUTO_INCREMENT PRIMARY KEY,
+    ingredient_id INT,
+    ingredient_amount INT,
+    FOREIGN KEY (ingredient_id) REFERENCES Inventory(ingredient_id)
+    
+);
 -- table for menu, please run the table for inventory first, i wrote this one first by accident and im too lazy to change it
 CREATE TABLE Menu (
 	dish_name VARCHAR(255) PRIMARY KEY,
@@ -82,17 +98,8 @@ CREATE TABLE Menu (
     
 );
 
--- table for inventory
-CREATE table Inventory (
-	ingredient_id INT AUTO_INCREMENT PRIMARY KEY,
-	ingredient_name VARCHAR(255),
-	expire_date DATE,
-	buy_date DATE,
-	quantity INT
-);
-
 -- table for orders
-CREATE TABLE `orders` (
+CREATE TABLE `Orders` (
 	order_id INT AUTO_INCREMENT PRIMARY KEY,
 	table_number INT,
 	dish_name VARCHAR(255),
@@ -104,11 +111,11 @@ CREATE TABLE `orders` (
 -- table for billing
 CREATE TABLE Billing (
 	billing_id INT AUTO_INCREMENT PRIMARY KEY,
-	emp_id INT,
+	manager_id INT,
 	total_price DECIMAL(10,2),
 	date DATE,
 	type VARCHAR(255),
-	FOREIGN KEY (emp_id) REFERENCES Employees(emp_id)
+	FOREIGN KEY (manager_id) REFERENCES Employees(emp_id)
 );
 
 -- table for the salaries
@@ -163,14 +170,6 @@ CREATE TABLE Monthly_income (
     
 );
 
--- table for recipe
-CREATE TABLE Recipes (
-	recipe_id INT AUTO_INCREMENT PRIMARY KEY,
-    ingredient_id INT,
-    ingredient_amount INT,
-    FOREIGN KEY (ingredient_id) REFERENCES Inventory(ingredient_id)
-    
-);
     
 
 -- also none of these are loaded yet, ill load them once we have all the customer information and stuff
