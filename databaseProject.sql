@@ -22,7 +22,7 @@ CREATE TABLE Reservations (
 	reservations_id INT AUTO_INCREMENT PRIMARY KEY,
 	customer_name VARCHAR(255),
 	customer_contact VARCHAR(255),
-	date DATETIME,
+	date DATE,
 	time TIME,
 	number_of_people INT,
 	table_number INT,
