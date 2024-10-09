@@ -59,6 +59,7 @@ CREATE TABLE Full_Time (
 -- table for manager
 CREATE TABLE Managers (
 	emp_id INT,
+	department VARCHAR(255),
 	years_of_experience INT,
 	FOREIGN KEY (emp_id) REFERENCES Employees(emp_id)
 );
@@ -76,7 +77,6 @@ CREATE table Inventory (
 	expire_date DATE,
 	buy_date DATE,
 	quantity INT,
-    	unit VARCHAR(255)
 );
 
 -- table for recipe
