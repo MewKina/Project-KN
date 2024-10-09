@@ -76,7 +76,7 @@ CREATE table Inventory (
 	ingredient_name VARCHAR(255),
 	expire_date DATE,
 	buy_date DATE,
-	quantity INT,
+	quantity INT
 );
 
 -- table for recipe
